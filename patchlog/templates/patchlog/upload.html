@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>패치 업로드</title>
+</head>
+<body>
+    <h1>📤 패치 업로드</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.author.label }} {{ form.author }}</p>
+        <p>{{ form.description.label }} {{ form.description }}</p>
+        <p>{{ form.zip_name.label }} {{ form.zip_name }}</p>
+        <p>{{ form.patch_file.label }} {{ form.patch_file }}</p>
+        <button type="submit">업로드</button>
+      </form>      
+</body>
+</html>

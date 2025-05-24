@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📦 업로드 내역</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f5f5f5; }
+        h1 { margin-bottom: 10px; }
+        .btn { margin-top: 20px; display: inline-block; background: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+        .btn:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>📦 업로드된 패치 기록</h1>
+
+    {% if patches %}
+    <table>
+        <tr>
+            <th>등록일</th>
+            <th>작성자</th>
+            <th>설명</th>
+            <th>파일 이름</th>
+            <th>다운로드</th>
+        </tr>
+        {% for patch in patches %}
+        <tr>
+            <td>{{ patch.created_at|date:"Y-m-d H:i" }}</td>
+            <td>{{ patch.author }}</td>
+            <td>{{ patch.description }}</td>
+            <td>{{ patch.zip_name }}</td>
+            <td><a href="{{ patch.patch_file.url }}" download>⬇️ 다운로드</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>📭 아직 업로드된 패치가 없습니다.</p>
+    {% endif %}
+
+    <a href="{% url 'upload_patch' %}" class="btn">⬅️ 새 패치 업로드</a>
+</body>
+</html>
